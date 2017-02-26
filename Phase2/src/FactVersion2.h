@@ -7,14 +7,15 @@ class Fact : public KB{
     protected:
         string factss;
 	public:
-	    //a vector of string facts
+	//default constructor
+	Fact(string factss);
+	//a vector of string facts
         vector<string> stringFacts;
-        //default constructor
-	    Fact(string factss);
         //returns a vector with a fact
         vector<string> get_Facts();
         //dump the facts
-        void dumpFacts(SRI sriObj);
+        //void dumpFacts(SRI sriObj);
+	//void captureFact(Fact *fact, SRI sriObj);
         void infer_query(map<string,Fact*> facts,string strFact);
         //override operator <<
         friend ostream& operator<<(ostream &os,Fact *fact);
