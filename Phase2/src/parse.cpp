@@ -38,12 +38,6 @@ void menu()
         }
         else cout<<"please enter a valid command"<<endl;
     }
-        //when parsing the file, find space between words
-        space = command.find(" " , 0);
-        spaceEnd = command.find("(" , 0);
-        cout << "there is a space @" << space << endl;
-        firstWordFound=command.substr(space+1,(spaceEnd-space-1));
-        cout<<firstWordFound<<endl;
         cout<<"Enter your command: "<<endl;
 }
 }
