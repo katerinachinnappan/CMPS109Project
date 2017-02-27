@@ -7,6 +7,7 @@ using namespace std;
 
 void menu()
 {
+    SRI *sriobj;
     string command;//the command user enters
     string input;
     string firstWordFound;
@@ -26,12 +27,12 @@ void menu()
         //cin>>command;
             //cout<<"Enter your command: "<<endl;
 
-        if(command == "FACT")cout<<"you entered FACT"<<endl;
-        else if(command == "RULE")cout<<"you entered RULE"<<endl;
-        else if(command == "LOAD")cout<<"you entered LOAD"<<endl;
-        else if(command == "DUMP")cout<<"you entered DUMP"<<endl;
-        else if(command == "DROP")cout<<"you entered DROP"<<endl;
-        else if(command == "INFERENCE")cout<<"you entered INFERENCE"<<endl;
+        if(command == "FACT")sriobj->fact();//cout<<"you entered FACT"<<endl;
+        else if(command == "RULE")sriobj->rule()//cout<<"you entered RULE"<<endl;
+        else if(command == "LOAD")sriobj->load();//cout<<"you entered LOAD"<<endl;
+        else if(command == "DUMP")sriobj->dump(os);//cout<<"you entered DUMP"<<endl;
+        else if(command == "DROP")sriobj->drop(string)//cout<<"you entered DROP"<<endl;
+        else if(command == "INFERENCE")sriobj->infer()//cout<<"you entered INFERENCE"<<endl;
         else if(command == "QUIT"){
             cout<<"CIAO"<<endl;
             break;
