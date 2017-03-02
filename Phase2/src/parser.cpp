@@ -1,7 +1,7 @@
-#include "Parse.h"
+#include "Parser.h"
 #include "common_headers.h"
 
-bool Parse::getType(string s)
+bool Parser::getType(string s)
 {
 	string str = s.substr(0,4);
 	if (str == "FACT")
@@ -10,7 +10,7 @@ bool Parse::getType(string s)
 	    return false;
 }
 
-bool Parse::getGate(string s)
+bool Parser::getGate(string s)
 {
 	int str = s.find(" AND ");
 	if (str > 999999)
@@ -19,7 +19,7 @@ bool Parse::getGate(string s)
 	    return true;
 }
 
-string Parse::getFactAssoc(string s)
+string Parser::getFactAssoc(string s)
 {
 	int spaceIndex = s.find(" ");
 	int paranIndex = s.find("(");
@@ -28,7 +28,7 @@ string Parse::getFactAssoc(string s)
 	return strtemp;
 }
 
-string Parse::getRuleAssoc(string s)
+string Parser::getRuleAssoc(string s)
 {
 	int spaceIndex = s.find(" ");
 	int paranIndex = s.find("(");
@@ -37,7 +37,7 @@ string Parse::getRuleAssoc(string s)
 	return strtemp; 
 }
 
-vector<string> Parse::getFactParam(string str)
+vector<string> Parser::getFactParam(string str)
 {
 	vector<int> index;
 
@@ -62,7 +62,7 @@ vector<string> Parse::getFactParam(string str)
 	return param;
 }
 
-vector<string> Parse::getRuleParam(string)
+vector<string> Parser::getRuleParam(string)
 {
 	return vector<string>();
 }

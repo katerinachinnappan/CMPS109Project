@@ -1,7 +1,7 @@
 #pragma once
 #include "common_headers.h"
 
-class Parse {
+class Parser {
 	bool getType(string);     //determine whether a given line is a fact, rule, or inference. 
 	                          //returns 'true' for fact and 'false' for rule
 	bool getGate(string);     //returns the type of gate used in any given rule 
