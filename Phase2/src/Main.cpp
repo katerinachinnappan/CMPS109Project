@@ -1,3 +1,6 @@
+//  Main.cpp
+//
+//  Created by Katerina Chinnappan
 #include "common_headers.h"
 #include "Fact.h"
 #include "Rule.h"
