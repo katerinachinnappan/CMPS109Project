@@ -5,9 +5,8 @@
 //  Created by Babbie Monahelis on 2/25/17.
 //  Copyright © 2017 Babbie Monahelis. All rights reserved.
 //
-
-#include "KnowledgeBase.hpp"
-
+#include "common_headers.h"
+#include "KnowledgeBase.h"
 KnowledgeBase::KnowledgeBase()
 {
     map<string, vector<Fact *>> FactDictionary = *new map<string, vector<Fact *> >();
@@ -17,14 +16,14 @@ bool KnowledgeBase::findFactAssociation(Fact * fact)
 {
     if (FactDictionary.find(fact->association) == FactDictionary.end())
         return false;
-    
-    return true; 
+
+    return true;
 }
 
 void KnowledgeBase::AddFact(Fact * fact)
 {
     bool found = findFactAssociation(fact);
-    
+
     if (found == false)
     {
         vector<Fact *> tempVector;
@@ -38,14 +37,21 @@ void KnowledgeBase::AddFact(Fact * fact)
             if (f->members == fact->members)
                 cout << "This fact is already in our knowledge base.\n";
         }
-        
+
         FactDictionary[fact->association].push_back(fact);
-        
+
     }
-    
+
+}
+void KnowledgeBase::dropFact(string param){
 }
 
 KnowledgeBase::~KnowledgeBase()
 {
     FactDictionary.clear();
 }
+/*int main()
+{
+
+}*/
+
