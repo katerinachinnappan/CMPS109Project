@@ -6,30 +6,23 @@
 //  Copyright © 2017 Babbie Monahelis. All rights reserved.
 //
 
-#ifndef RuleBase_hpp
-#define RuleBase_hpp
-
-#include <stdio.h>
-#include "Component.hpp"
-using namespace std;
-
+#ifndef RULEBASE_H_INCLUDED
+#define RULEBASE_H_INCLUDED
+#include "common_headers.h"
+#include "Component.h"
 class RuleBase
 {
-    
-private:
-    
-    vector<Rule*> rules;
-    
+
 public:
-    
+    map<string, vector<Rule*> > rules;
     RuleBase(); //default constructor
     ~RuleBase(); //Destructor
-    
+
     void AddRule(Rule * rule);
-    void DropRule (Rule * rule);
-    
+    void dropRule(string param);
+
 };
 
 
 
-#endif /* RuleBase_hpp */
+#endif // RULEBASE_H_INCLUDED
