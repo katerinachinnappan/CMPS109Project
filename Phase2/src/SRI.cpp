@@ -1,27 +1,59 @@
-//created by Katerina Chinnappan
 #include "common_headers.h"
 #include "SRI.h"
 #include "Component.h"
+#include "Component.cpp"
 #include "KnowledgeBase.cpp"
 #include "RuleBase.cpp"
+/***global**/
+string line;
+string right;
+string lefty;
+string predicate;
+string parse;
+string factName, ruleName;
+string element;
+string operatorL;
+int LEFT = 1;
 SRI::SRI(){}
 SRI::~SRI(){}
 inline void SRI::dumpRF(ostream &os, KnowledgeBase *facts, RuleBase *brules)
 {
     //dump facts
-    for(auto iterator = facts->FactDictionary.begin(); iterator != facts->FactDictionary.end(); iterator++)
+    for(auto iteratorx = facts->FactDictionary.begin(); iteratorx != facts->FactDictionary.end(); iteratorx++)
     {
-        //os<<iterator->second<<endl;
+        os<<iteratorx->second<<endl;
     }
     //dump rules
-    for(auto iterator = brules->rules.begin(); iterator != brules->rules.end(); iterator++)
+    for(auto iteratorx = brules->rules.begin(); iteratorx != brules->rules.end(); iteratorx++)
     {
-        //os<<iterator->second<<endl;
+        os<<iteratorx->second<<endl;
     }
 
 }
-void SRI::inference()
+/*void SRI::inference(string input, KnowledgeBase *facts, RuleBase *brules)
 {
+    ifstream in(input);//input file passed to infer on
+    getline(in, line);
+    stringstream str(line);
+    getline(str, lefty, '(');
+
+    inferFact(facts, lefty);
+    inferRule(brules, facts, lefty, line);
+
+
+}*/
+void SRI::inferFact(KnowledgeBase *facts, string left)
+{
+    if(facts->FactDictionary.count(left) == LEFT){
+        //print
+        cout<<"Facts: "<<facts->FactDictionary[left]<<endl;
+    }
+}
+void SRI::inferRule(RuleBase *brules, KnowledgeBase *facts, string left, string emptyLine)
+{
+    if(brules->rules.count(left) == LEFT){
+        brules->identifyRule(emptyLine, brules, facts);
+    }
 
 }
 void SRI::dump()
@@ -42,36 +74,67 @@ void SRI::drop(string param)
     rules->dropRule(param);
 
 }
+void SRI::loadRule(stringstream &str, stringstream &str1, string ruleElement)
+{
+    getline(str, ruleName, ':');
+    getline(str, operatorL, ' ');//parse the logical operator
+}
+void SRI::loadFact(stringstream &str1, string factElement)
+{
+    KnowledgeBase *facts;
+    getline(str1, factName, ')');
+    if(facts->FactDictionary.count(factName) != LEFT){//check if fact is in dictionary
+    Fact *factt;
+    factt = new Fact(factName);
+    facts->FactDictionary[factName] = factt;
+    while(getline(str1, factElement, ',')){
+        factt->members.push_back(factElement);
+    }
+    }
+    //if fact is already in dictionary
+    else if(facts->FactDictionary.count(factName) == LEFT)
+    {
+        facts->FactDictionary.find(factName)->second->members.push_back("|");
+        while(getline(str1, factElement, ',')){
+            facts->FactDictionary.find(factName)->second->members.push_back(factElement);
+        }
+    }
+
+}
+void testFact()
+{
+    cout<<"Fact"<<endl;
+}
+void testRule()
+{
+    cout<<"Rule"<<endl;
+}
 void SRI::load()
 {
-	string line;
 	string filePath;
 	cout << "Enter filename: " << endl;
 	cin >> filePath;
 	ifstream userFile(filePath);
 	while (getline(userFile, line)) {
-		if (getType(line)) {//FACT
-			if (kb.facts(getFactAssoc(line)) != kb.facts.end()) {//found FactAssoc
-				if (find(kb.facts[getFactAssoc(line)].begin(), kb.facts[getFactAssoc(line)].end(), getFactParam(line) != kb.facts[getFactAssoc(line)].end())) {//find factParam in vector
-					return;
-				}
-				else {
-					kb.itVector = kb.itMap.insert(kb.itVector, getFactParam(line));//insert factParam to i
-				}
-			}
-			else {// insert FactAssocia and FactParam to facts map
-				kb.facts[getFactAssoc(line)] = getFactParam(line);
-			}
-		}
-		else if(getType(line)){//RULE
-			line.erase(0, line.find(delimiterSpace) + delimiterSpace.length());
-			
-		}
-		else {
-			cout << "SRI load error: Invalid command (command FACT and RULE only)" << endl;
-			continue;
-		}
+        stringstream str(line);
+        getline(str, lefty, ')');
+        getline(str, parse, ' ');
+        stringstream str1(line);
+        stringstream str2(lefty);
+
+        //load rule
+        cout<<"Parse"<<parse<<endl;
+        if(parse == ":-"){
+            //loadRule(str, str1, element);
+            testRule();
+        }
+        else{
+            //loadFact(str1,element);
+            testFact();
+        }
+
 	}
+    cout<<"Loaded"<<endl;
 }
 /*int main()
 {

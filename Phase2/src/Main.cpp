@@ -1,9 +1,5 @@
-//  Main.cpp
-//
-//  Created by Katerina Chinnappan
 #include "common_headers.h"
-#include "Fact.h"
-#include "Rule.h"
+#include "Component.h"
 #include "SRI.cpp"
 void menu()
 {
@@ -31,18 +27,18 @@ void menu()
 
 	if(command2 == "i"){
 		cout<<"Fact entered: "<<command1<<endl; //pring the fact entered on console
-		fout.open("output.sri", fstream::app); //write to output file
-		//string outputFile = "output.sri";
+		fout.open("output.sri"); //write to output file
+		//outputFile = "output.sri";
 		fout << command1; //put everything to the output file
-		sriobj->load();// load will check which one is Rules and Facts and load accordingly
 		fout.close();
+		sriobj->load();// load will check which one is Rules and Facts and load accordingly
     }
 	else if(command2 == "ii"){
             cout<<"Rule entered: "<<command1<<endl;
-            fout.open("output.sri", fstream::app);
+            fout.open("output.sri");//, fstream::app);
             fout<<command1;
-            sriobj->load();
             fout.close();
+            sriobj->load();
         }
 
 	else if(command2 == "iii"){
@@ -61,7 +57,7 @@ void menu()
     }
     else if(command2 == "vi"){
         cout<<"Issuing a query"<<endl;
-        sriobj->inference();
+        //sriobj->inference();
     }
     else if(command == "vii"){
         cout<<"CIAO BAMBINO"<<endl;
