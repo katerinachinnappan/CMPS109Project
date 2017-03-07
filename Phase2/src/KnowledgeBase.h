@@ -21,6 +21,7 @@ public:
     bool findFactAssociation(Fact * fact); //Find the association of a certain fact.
     void AddFact(Fact * fact); //Add a fact to the Knowledge Base FactDictionary.
     void dropFact(string param); //Drop fact from the FactDictuionary.
+    void loadFact(stringstream &str1, string factElement);//load the fact into KB
 
     ~KnowledgeBase(); //Deconstructor to delete the map.
 
