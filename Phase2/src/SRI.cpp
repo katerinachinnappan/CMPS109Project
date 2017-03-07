@@ -112,6 +112,8 @@ void testRule()
 void SRI::load()
 {
 	string filePath;
+	KnowledgeBase *kb;
+	RuleBase *rb;
 	cout << "Enter filename: " << endl;
 	cin >> filePath;
 	ifstream userFile(filePath);
@@ -129,7 +131,7 @@ void SRI::load()
             testRule();
         }
         else{
-            //loadFact(str1,element);
+            kb->loadFact(str2,element);
             testFact();
         }
 
