@@ -11,7 +11,7 @@ string lefty;
 string predicate;
 string parse;
 string factName, ruleName;
-string element;
+string element; //members of the fact (Rick, Bob, Billy...etc)
 string operatorL;
 int LEFT = 1;
 SRI::SRI(){}
