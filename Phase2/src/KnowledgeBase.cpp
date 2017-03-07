@@ -46,6 +46,7 @@ void KnowledgeBase::AddFact(Fact * fact)
 }
 void KnowledgeBase::dropFact(string param){
 }
+//pls work
 void KnowledgeBase::loadFact(stringstream &str2, string factElement)
 {
     //KnowledgeBase *facts;
