@@ -14,7 +14,7 @@ class RuleBase
 {
 
 public:
-    map<string, vector<Rule*> > rules;
+    map<string, Rule*>  rules;
     RuleBase(); //default constructor
     ~RuleBase(); //Destructor
 
