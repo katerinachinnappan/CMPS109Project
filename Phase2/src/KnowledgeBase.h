@@ -14,7 +14,7 @@ class KnowledgeBase
 
 public:
 
-    map<string, vector<Fact*> > FactDictionary; //Map "dictionary" to hold the facts.
+    map<string, Fact* > FactDictionary; //Map "dictionary" to hold the facts.
 
     KnowledgeBase(); //Constructor
 
