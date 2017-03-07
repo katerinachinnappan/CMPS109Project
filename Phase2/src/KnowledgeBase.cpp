@@ -46,11 +46,21 @@ void KnowledgeBase::AddFact(Fact * fact)
 }
 void KnowledgeBase::dropFact(string param){
 }
-void KnowledgeBase::loadFact(stringstream &str1, string factElement)
+void KnowledgeBase::loadFact(stringstream &str2, string factElement)
 {
     //KnowledgeBase *facts;
-    getline(str1, factName, ')');
-    if(FactDictionary.count(factName) != LEFT){//check if fact is in dictionary
+    getline(str2, factName, ')');
+    cout<<"Val in FactName="<<factName<<endl;
+    if(FactDictionary.count(factName) > 0){//check if fact is in dictionary
+        Fact *factt;
+        factt = new Fact(factName);//invokes constructor in Fact class, factName is now Father, Mother, etc...
+        FactDictionary[factName] = factt;
+        while(getline(str2, factElement, ',')){
+            factt->members.push_back(factElement);//magic
+        }//push all the members into the vector
+        cout<<"Facts loaded bruhhhhs"<<endl;
+    }
+    /*if(FactDictionary.count(factName) != LEFT){//check if fact is in dictionary
     Fact *factt;
     factt = new Fact(factName);
     FactDictionary[factName] = factt;
@@ -65,7 +75,7 @@ void KnowledgeBase::loadFact(stringstream &str1, string factElement)
         while(getline(str1, factElement, ',')){
             FactDictionary.find(factName)->second->members.push_back(factElement);
         }
-    }
+    }*/
 
 }
 void testFact()
