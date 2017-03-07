@@ -20,6 +20,7 @@ public:
 
     void AddRule(Rule * rule);
     void dropRule(string param);
+    void loadRule(stringstream &str, stringstream &str1, string ruleElement);//load rule into KB
 
 };
 
