@@ -78,14 +78,6 @@ void KnowledgeBase::loadFact(stringstream &str2, string factElement)
     }*/
 
 }
-void testFact()
-{
-    cout<<"Fact"<<endl;
-}
-void testRule()
-{
-    cout<<"Rule"<<endl;
-}
 
 KnowledgeBase::~KnowledgeBase()
 {
