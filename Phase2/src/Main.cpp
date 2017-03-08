@@ -4,6 +4,8 @@
 void menu()
 {
     SRI *sriobj;
+    KnowledgeBase *kb = new KnowledgeBase();
+    RuleBase *rb = new RuleBase();
     string command, command1, command2; //command
     string input;
     ofstream fout;
