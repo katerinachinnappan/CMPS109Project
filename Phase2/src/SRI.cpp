@@ -10,24 +10,30 @@ string right;
 string lefty;
 string predicate;
 string parse;
-string factName, ruleName;
-string element; //members of the fact (Rick, Bob, Billy...etc)
+string ruleName;
+string element;
 string operatorL;
+string factName;
 int LEFT = 1;
 SRI::SRI(){}
 SRI::~SRI(){}
-inline void SRI::dumpRF(ostream &os, KnowledgeBase *facts, RuleBase *brules)
-{
+void SRI::dumpRF(ostream &os, KnowledgeBase *kb)
+{   cout<<"DUMP"<<endl;
+   // KnowledgeBase *facts =  new KnowledgeBase();
+   //KnowledgeBase facts;
     //dump facts
-    for(auto iteratorx = facts->FactDictionary.begin(); iteratorx != facts->FactDictionary.end(); iteratorx++)
+    for(auto iteratorx = kb->FactDictionary.begin(); iteratorx != kb->FactDictionary.end(); iteratorx++)
     {
         os<<iteratorx->second<<endl;
     }
+    for (auto p : kb->FactDictionary) {
+        cout << "m[" << p.first << "] = " << p.second << '\n';
+}
     //dump rules
-    for(auto iteratorx = brules->rules.begin(); iteratorx != brules->rules.end(); iteratorx++)
+    /*for(auto iteratorx = brules->rules.begin(); iteratorx != brules->rules.end(); iteratorx++)
     {
         os<<iteratorx->second<<endl;
-    }
+    }*/
 
 }
 /*void SRI::inference(string input, KnowledgeBase *facts, RuleBase *brules)
@@ -56,22 +62,18 @@ void SRI::inferRule(RuleBase *brules, KnowledgeBase *facts, string left, string 
     }
 
 }
-void SRI::dump()
+void SRI::dump(KnowledgeBase *kb)
 {
     ofstream out;
-    KnowledgeBase *facts;
-    RuleBase *brules;
     //open file
     out.open("out.sri");
-    dumpRF(out, facts, brules);
+    dumpRF(out, kb);
 
 }
-void SRI::drop(string param)
+void SRI::drop(string param, KnowledgeBase *kb, RuleBase *rb)
 {
-    RuleBase *rules;
-    KnowledgeBase *facts;
-    facts->dropFact(param);
-    rules->dropRule(param);
+    kb->dropFact(param, kb);
+    rb->dropRule(param, rb);
 
 }
 void SRI::loadRule(stringstream &str, stringstream &str1, string ruleElement)
@@ -79,28 +81,38 @@ void SRI::loadRule(stringstream &str, stringstream &str1, string ruleElement)
     getline(str, ruleName, ':');
     getline(str, operatorL, ' ');//parse the logical operator
 }
-void SRI::loadFact(stringstream &str1, string factElement)
-{
-    KnowledgeBase *facts;
-    getline(str1, factName, '(');
-    if(facts->FactDictionary.count(factName) != LEFT){//check if fact is in dictionary
-    Fact *factt;
-    factt = new Fact(factName);
-    facts->FactDictionary[factName] = factt;
-    while(getline(str1, factElement, ',')){
-        factt->members.push_back(factElement);
-    }
-    }
-    //if fact is already in dictionary
-    else if(facts->FactDictionary.count(factName) == LEFT)
+void SRI::loadFact(stringstream &str2, string factElement, KnowledgeBase *kb)
+ {
+    getline(str2, factName, '(');
+    cout<<"Val in FactName="<<factName<<endl;
+    if(kb->FactDictionary.empty()){cout<<"empty"<<endl;}
+    else{cout<<"not empty"<<endl;}
+    if(kb->FactDictionary.count(factName) != 1)
     {
-        facts->FactDictionary.find(factName)->second->members.push_back("|");
-        while(getline(str1, factElement, ',')){
-            facts->FactDictionary.find(factName)->second->members.push_back(factElement);
-        }
+        cout<<"is not element in the map"<<endl;
+        Fact *factt;
+        factt = new Fact(factName);//invokes constructor in Fact class, factName is now Father, Mother, etc...
+        kb->FactDictionary[factName] = factt;
+        while(getline(str2, factElement, ',')){
+                cout<<"Fact memebers: "<<factElement<<endl;
+            factt->members.push_back(factElement);//magic
+        }//push all the members into the vector
+        for(auto i = factt->members.begin(); i!= factt->members.end(); i++)
+            cout<<"vector contents: "<<*i<<endl;
+        cout<<"Facts loaded bruhhhhs"<<endl;
     }
+    else{
+        cout<<"is  an element"<<endl;
+    }
+    for(auto iteratorx = kb->FactDictionary.begin(); iteratorx != kb->FactDictionary.end(); iteratorx++)
+    {
+        cout<<iteratorx->second<<endl;
+    }
+    for (auto p : kb->FactDictionary) {
+        cout << "m[" << p.first << "] = " << p.second << '\n';
+ }
+ }
 
-}
 void testFact()
 {
     cout<<"Fact"<<endl;
@@ -109,11 +121,9 @@ void testRule()
 {
     cout<<"Rule"<<endl;
 }
-void SRI::load()
+void SRI::load(KnowledgeBase *kb)
 {
 	string filePath;
-	KnowledgeBase *kb;
-	RuleBase *rb;
 	cout << "Enter filename: " << endl;
 	cin >> filePath;
 	ifstream userFile(filePath);
@@ -125,14 +135,14 @@ void SRI::load()
         stringstream str2(lefty);
 
         //load rule
-        cout<<"Parse"<<parse<<endl;
+        //cout<<"Parse"<<parse<<endl;
         if(parse == ":-"){
-            loadRule(str, str1, element);
-            //testRule();
+            //loadRule(str, str1, element);
+            testRule();
         }
         else{
-            kb->loadFact(str2,element);
-            testFact();
+            loadFact(str2,element, kb);
+            //testFact();
         }
 
 	}

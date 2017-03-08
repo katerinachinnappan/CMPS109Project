@@ -1,6 +1,8 @@
 #include "common_headers.h"
 #include "Component.h"
 #include "SRI.cpp"
+#include "KnowledgeBase.h"
+#include "RuleBase.h"
 void menu()
 {
     SRI *sriobj;
@@ -33,28 +35,34 @@ void menu()
 		//outputFile = "output.sri";
 		fout << command1; //put everything to the output file
 		fout.close();
-		sriobj->load();// load will check which one is Rules and Facts and load accordingly
+		sriobj->load(kb);// load will check which one is Rules and Facts and load accordingly
+		for (auto p : kb->FactDictionary) {
+        cout<<"main" << "m[" << p.first << "] = " << p.second << '\n';
+    }
     }
 	else if(command2 == "ii"){
             cout<<"Rule entered: "<<command1<<endl;
             fout.open("output.sri");//, fstream::app);
             fout<<command1;
             fout.close();
-            sriobj->load();
+            sriobj->load(kb);
         }
 
 	else if(command2 == "iii"){
             cout<<"LOADING"<<endl;
-            sriobj->load();
+            sriobj->load(kb);
     }
     else if(command2 == "iv"){
-            sriobj->dump();
+            sriobj->dump(kb);
             cout<<"DUMPING KB AND RB"<<endl;
+            for (auto p : kb->FactDictionary) {
+        cout<<"main dump" << "m[" << p.first << "] = " << p.second << '\n';
+    }
 
     }
     else if(command2 == "v"){
             cout<<"DROPPING"<<endl;
-            sriobj->drop(command1);
+            sriobj->drop(command1, kb, rb);
 
     }
     else if(command2 == "vi"){

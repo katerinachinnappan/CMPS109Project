@@ -1,15 +1,5 @@
-//
-//  Component.cpp
-//  SRI
-//
-//  Created by Babbie Monahelis on 2/28/17.
-//  Copyright © 2017 Babbie Monahelis. All rights reserved.
-//
-
-#include "Component.hpp"
-#include <iostream>
-using namespace std;
-
+#include "Component.h"
+#include "common_headers.h"
 /* Methods for Component - a base class that fact and rule will derive from */
 
 //Our default constructor.
@@ -17,7 +7,7 @@ Component::Component()
 {
     string identity = "";
     vector<string> elements;
-    
+
 }
 
 //Main constructor for our Components. This will take in a string for its
@@ -27,7 +17,7 @@ Component::Component(string i, vector<string> members)
 {
     string identity = i;
     vector<string> elements;
-  
+
 }
 
 //Copy constructor
@@ -41,7 +31,7 @@ Component::Component(const Component & copyComponent)
 bool Component::AND(bool first, bool second)
 {
     return (first && second);
-    
+
 }
 
 //Method for OR operator
@@ -53,16 +43,16 @@ bool Component::OR(bool first, bool second)
 //Deconstructor
 Component::~Component()
 {
-    
+
 }
 
 /************** Methods for Fact **************/
 
 
-Fact::Fact(string a, vector<string> e)
+Fact::Fact(string a)
 {
-    string association = a; //Association of the fact.
-    vector<string> elements = e; //represents the members of the Fact.
+    association = a; //Association of the fact.
+    vector<string>members;
 }
 
 Fact::Fact(const Fact & f)
@@ -84,19 +74,4 @@ Rule::Rule(string i, vector<Component*> e, vector<bool> operators)
     vector<Component*> elements = e;
     vector<bool> function = operators;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
