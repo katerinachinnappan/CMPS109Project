@@ -3,7 +3,7 @@
 string factNamee;
 KnowledgeBase::KnowledgeBase()
 {
-    map<string, Fact *> FactDictionary = *new map<string, Fact * >();
+    map<string, Fact*> FactDictionary = *new map<string, Fact*>();
 }
 
 bool KnowledgeBase::findFactAssociation(Fact * fact)

@@ -11,8 +11,8 @@ class SRI{
         void inference(string input, KnowledgeBase *facts, RuleBase *brules);
         void inferFact(KnowledgeBase *facts, string lefty);
         void inferRule(RuleBase *brules, KnowledgeBase *facts, string left, string emptyLine);
-        void load(KnowledgeBase *kb);
-        void loadRule(stringstream &str, stringstream &str1, string ruleElement);
+        void load(KnowledgeBase *kb, RuleBase *rb);
+        void loadRule(stringstream &str, stringstream &str1, string ruleElement, RuleBase *rb);
         void loadFact(stringstream &str2, string factElement, KnowledgeBase *kb);
         void dump(KnowledgeBase *kb);
         void dumpRF(ostream &os, KnowledgeBase *kb);

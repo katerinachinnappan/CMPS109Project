@@ -35,22 +35,22 @@ void menu()
 		//outputFile = "output.sri";
 		fout << command1; //put everything to the output file
 		fout.close();
-		sriobj->load(kb);// load will check which one is Rules and Facts and load accordingly
-		for (auto p : kb->FactDictionary) {
+		sriobj->load(kb, rb);// load will check which one is Rules and Facts and load accordingly
+		/*for (auto p : kb->FactDictionary) {
         cout<<"main" << "m[" << p.first << "] = " << p.second << '\n';
-    }
+    }*/
     }
 	else if(command2 == "ii"){
             cout<<"Rule entered: "<<command1<<endl;
             fout.open("output.sri");//, fstream::app);
             fout<<command1;
             fout.close();
-            sriobj->load(kb);
+            sriobj->load(kb, rb);
         }
 
 	else if(command2 == "iii"){
             cout<<"LOADING"<<endl;
-            sriobj->load(kb);
+            sriobj->load(kb, rb);
     }
     else if(command2 == "iv"){
             sriobj->dump(kb);

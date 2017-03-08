@@ -49,16 +49,31 @@ Component::~Component()
 /************** Methods for Fact **************/
 
 
-Fact::Fact(string a)
+Fact::Fact(string a, vector<string>elements)
 {
+    cout<<"constructor"<<endl;
     association = a; //Association of the fact.
-    vector<string>members;
+    members = elements;
+    for(auto i = members.begin(); i!= members.end(); i++)
+            cout<<"vector contents: "<<*i<<endl;
 }
 
 Fact::Fact(const Fact & f)
 {
     association = f.identity;
     elements = f.elements;
+}
+
+ostream& operator<< (ostream &os, Fact* fact)
+{
+    //name of fact
+	os << fact->association << "(";
+	for(int i=0; i < fact->members.size(); i++){
+		string params = fact->members[i];
+		os << params <<",";
+	}
+	os << ")" << endl;
+    return os;
 }
 
 Rule::Rule()

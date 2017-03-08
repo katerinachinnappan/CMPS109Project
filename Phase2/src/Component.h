@@ -36,12 +36,13 @@ class Fact : Component
 
 public:
 
-    Fact(string identity); //Main constructor for a Fact.
+    Fact(string identity, vector<string>elements); //Main constructor for a Fact.
     Fact(const Fact & f); //Copy constructor.
     Fact(Fact && f); //Move constructor.
 
     string association; //The association of the fact i.e Father, Mother, etc...
     vector<string> members; //The members of the fact i.e John, Paul, Jones, etc...
+    friend ostream& operator<<(ostream &os,Fact * fact);
 
 
    // bool factExists(vector<string> members); //Takes in a vector that represents the members of a fact.
