@@ -127,8 +127,8 @@ void SRI::load()
         //load rule
         cout<<"Parse"<<parse<<endl;
         if(parse == ":-"){
-            //loadRule(str, str1, element);
-            testRule();
+            loadRule(str, str1, element);
+            //testRule();
         }
         else{
             kb->loadFact(str2,element);
