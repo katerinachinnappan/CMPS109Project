@@ -82,7 +82,7 @@ void SRI::loadRule(stringstream &str, stringstream &str1, string ruleElement)
 void SRI::loadFact(stringstream &str1, string factElement)
 {
     KnowledgeBase *facts;
-    getline(str1, factName, ')');
+    getline(str1, factName, '(');
     if(facts->FactDictionary.count(factName) != LEFT){//check if fact is in dictionary
     Fact *factt;
     factt = new Fact(factName);
