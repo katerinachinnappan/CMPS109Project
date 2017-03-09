@@ -31,7 +31,7 @@ void menu()
 
 	if(command2 == "i"){
 		cout<<"Fact entered: "<<command1<<endl; //pring the fact entered on console
-		fout.open("output.sri"); //write to output file
+		fout.open("input.sri"); //write to output file
 		//outputFile = "output.sri";
 		fout << command1; //put everything to the output file
 		fout.close();
@@ -42,7 +42,7 @@ void menu()
     }
 	else if(command2 == "ii"){
             cout<<"Rule entered: "<<command1<<endl;
-            fout.open("output.sri");//, fstream::app);
+            fout.open("input.sri");//, fstream::app);
             fout<<command1;
             fout.close();
             sriobj->load(kb, rb);
@@ -53,13 +53,10 @@ void menu()
             sriobj->load(kb, rb);
     }
     else if(command2 == "iv"){
-            sriobj->dump(kb);
+            sriobj->dump(kb, rb);
             cout<<"DUMPING KB AND RB"<<endl;
-            for (auto p : kb->FactDictionary) {
-        cout<<"main dump" << "m[" << p.first << "] = " << p.second << '\n';
     }
 
-    }
     else if(command2 == "v"){
             cout<<"DROPPING"<<endl;
             sriobj->drop(command1, kb, rb);

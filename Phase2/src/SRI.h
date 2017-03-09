@@ -12,10 +12,11 @@ class SRI{
         void inferFact(KnowledgeBase *facts, string lefty);
         void inferRule(RuleBase *brules, KnowledgeBase *facts, string left, string emptyLine);
         void load(KnowledgeBase *kb, RuleBase *rb);
-        void loadRule(stringstream &str, stringstream &str1, string ruleElement, RuleBase *rb);
+        void loadRule(stringstream &str, stringstream &str1, string ruleElement,
+                      RuleBase *rb, string operatorL, string ruleName);
         void loadFact(stringstream &str2, string factElement, KnowledgeBase *kb);
-        void dump(KnowledgeBase *kb);
-        void dumpRF(ostream &os, KnowledgeBase *kb);
+        void dump(KnowledgeBase *kb, RuleBase *rb);
+        void dumpRF(ostream &os, KnowledgeBase *kb, RuleBase *rb);
         void drop(string param, KnowledgeBase *kb, RuleBase *rb);
         //fact map
         //map<string,vector<Fact*>>factmap;

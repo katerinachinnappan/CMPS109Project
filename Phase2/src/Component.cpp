@@ -76,11 +76,18 @@ ostream& operator<< (ostream &os, Fact* fact)
     return os;
 }
 
-Rule::Rule()
+Rule::Rule(string logicalOperator, string association, vector<string> elements)
 {
-    string association = ""; //Association of the rule.
+    cout<<"Rule constructor"<<endl;
+    this->logicalOperator = logicalOperator;
+    this->association = association;
+    cout<<"association: "<<this->association<<endl;
+    elementss = elements;
+    for(auto i = elementss.begin(); i!= elementss.end(); i++)
+            cout<<"vector contents: "<<*i<<endl;
+    /*string association = ""; //Association of the rule.
     vector<Component*> members; //Vector of the Components that will define this rule. These can be rules or facts.
-    vector<bool> operators; //Vector to store the operators we come across in the rule.
+    vector<bool> operators; //Vector to store the operators we come across in the rule.*/
 }
 
 Rule::Rule(string i, vector<Component*> e, vector<bool> operators)
@@ -88,5 +95,14 @@ Rule::Rule(string i, vector<Component*> e, vector<bool> operators)
     string association = i;
     vector<Component*> elements = e;
     vector<bool> function = operators;
+}
+ostream& operator<<(ostream &os, Rule* rule)
+{
+    os << rule->association << ":-";
+	for(int i=0; i < rule->elementss.size(); i++){
+		string params = rule->elementss[i];
+		os <<" "<< params ;
+	}
+    return os;
 }
 

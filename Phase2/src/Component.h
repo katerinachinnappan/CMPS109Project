@@ -54,17 +54,18 @@ class Rule : Component
 
 public:
 
-    Rule();
+    Rule(string logicalOperator, string association, vector<string> elements);
     Rule(string identity, vector<Component*> elements, vector<bool> operators); //constructor that can accept rules with multiple components in a vector of type Component.
     Rule(const Rule & r); //copy constructor.
     Rule(Rule && r); //Move constructor.
 
+    string logicalOperator;
     string association; //The association of the rule i.e Grandfather, Grandmother, Parent, etc...
-    vector<Component*> elements;
+    vector<string> elementss;
     vector<int> functionOperator; //These point to AND/OR, similar to boolean ops.
 
     bool validate(vector<string> members); //Determines if a rule is valid based on the elements it is built from.
-
+    friend ostream& operator<< (ostream &os, Rule* rule);
 
 };
 
